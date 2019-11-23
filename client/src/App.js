@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import EmployeeInfo from './containers/EmployeeInfo';
+import PaySlip from './containers/PaySlip';
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+          {/* EmployeeInfo */}
+          <Route exact path="/">
+            {<EmployeeInfo />}
+          </Route>
+
+          {/* PaySlip */}
+          <Route
+            exact
+            path="/PaySlip"
+          >
+            {<PaySlip/>}
+          </Route>
+        </Switch>
+    </Router>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  loadingStatus: state.Salary.loadingStatus,
+});
+
+export default connect(mapStateToProps)(App);
