@@ -5,6 +5,9 @@ import { calculate } from "../../reducers/salaryReducer";
 
 import "./style.css";
 
+const nameRegex = /^[a-zA-Z]+$/;
+const superRateRegex = /^\d(\.)?(\d+)?$/;
+
 const SalaryForm = ({ calculate, error }) => {
   const [firstName, onChangeFirstName] = useState("");
   const [lastName, onChangeLastName] = useState("");
@@ -12,13 +15,32 @@ const SalaryForm = ({ calculate, error }) => {
   const [salary, onChangeSalary] = useState("");
   const [superRate, onChangesuperRate] = useState("");
 
-  const handleFirstNameChange = e => onChangeFirstName(e.target.value);
-  const handleLastNameChange = e => onChangeLastName(e.target.value);
+  const isNameValid = name => nameRegex.test(name);
+
+  const handleFirstNameChange = e => {
+    const newValue = e.target.value;
+    if (!isNameValid(newValue)) return;
+
+    onChangeFirstName(newValue);
+  };
+  const handleLastNameChange = e => {
+    const newValue = e.target.value;
+    if (!isNameValid(newValue)) return;
+
+    onChangeLastName(e.target.value);
+  };
   const handleSalaryChange = e => onChangeSalary(e.target.value);
-  const handleSuperRateChange = e => onChangesuperRate(e.target.value);
+  const handleSuperRateChange = e => {
+    const newValue = e.target.value;
+    const isFormatValid = superRateRegex.test(newValue);
+
+    if (!isFormatValid) return;
+    onChangesuperRate(e.target.value);
+  };
 
   const onSubmit = () => {
     if (!firstName || !lastName || !salary || !superRate) return;
+    if (superRate > 100) return;
 
     calculate({ firstName, lastName, salary, superRate });
   };
@@ -40,6 +62,7 @@ const SalaryForm = ({ calculate, error }) => {
 
       <input
         className="input"
+        type="number"
         onChange={handleSalaryChange}
         value={salary}
         placeholder="Annual Salary"
