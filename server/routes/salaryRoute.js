@@ -16,7 +16,8 @@ module.exports = [
         throw Boom.badRequest("Salary was already Paid");
       }
 
-      saveRecord(pool, payload);
+      const { insertId } = await saveRecord(pool, payload);
+      payload.insertId = insertId;
 
       return h.response(payload).code(200);
     },

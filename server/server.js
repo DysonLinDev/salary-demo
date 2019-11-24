@@ -25,6 +25,7 @@ const addPlugins = async () => {
     },
   });
 
+  // ref: https://remotemysql.com/phpmyadmin/index.php?db=TL16cVrhPJ&table=SalaryRecord&target=sql.php
   await server.register({
     plugin: HapiMySQL,
     options: {

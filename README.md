@@ -7,6 +7,7 @@
 - All names are in english characters
 - Using Austrailian number format.
 - Using remote mySQL.
+- using same database for DEV / TEST at the moment.
 
 # tech stack:
 
