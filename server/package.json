@@ -1,8 +1,17 @@
 {
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "lab"
+  },
   "dependencies": {
-    "@hapi/hapi": "^18.4.0"
+    "@hapi/hapi": "^18.4.0",
+    "hapi-cors": "^1.0.3",
+    "hapi-mysql2": "^2.4.2",
+    "hapi-router": "5"
   },
   "devDependencies": {
+    "@hapi/code": "^7.0.0",
+    "@hapi/lab": "^21.0.0",
     "nodemon": "^2.0.0"
   }
 }
