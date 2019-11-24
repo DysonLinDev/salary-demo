@@ -10,16 +10,16 @@ import {
 
 import { savePayslip } from "../apis/salary";
 
-function* getTaxAmount(salary) {
+export const getTaxableFee = (salary, min, rangeTop, rate) => {
+  return Math.round((min + (salary - rangeTop) * rate) / 12);
+};
+
+export function* getTaxAmount(salary) {
   try {
     // ref: https://www.ato.gov.au/Rates/Individual-income-tax-for-prior-years
     if (salary <= 18200) {
       return 0;
     }
-
-    const getTaxableFee = (salary, min, rangeTop, rate) => {
-      return Math.round((min + (salary - rangeTop) * rate) / 12);
-    };
 
     let minimum = 0;
     let rangeTop = 0;
@@ -111,7 +111,6 @@ export function* savePayRecordFlow(action) {
 
     yield put(submitSuccessed());
   } catch (error) {
-    console.log("error", error);
     yield put(submitFailed(error.message));
   }
 }
