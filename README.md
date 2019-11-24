@@ -26,14 +26,14 @@
 ## client
 
 - `cd client`
-- `nvm use v9.3.0` or use any node version > v9.3.0
+- `nvm use v9.3.0` or use any node version > v10.13.0
 - `yarn install`
 - `yarn start`
 
 ## server
 
 - `cd server`
-- `nvm use v9.3.0` or use any node version > v9.3.0
+- `nvm use v9.3.0` or use any node version > v10.13.0
 - `yarn install`
 - `yarn start`
 
