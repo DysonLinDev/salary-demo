@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 
 import { submit } from "../../reducers/salaryReducer";
 
+import { REQUEST_READY } from "../../reducers/salaryReducer";
+
 import "./style.css";
 
 const PaySlip = ({
+  loadingStatus,
   submit,
   error,
   firstName,
@@ -61,6 +64,7 @@ const PaySlip = ({
   ];
 
   if (!!error) alert(error);
+  if (loadingStatus === REQUEST_READY) alert("Save payslip successfully");
 
   return (
     <div className="root">
@@ -82,6 +86,7 @@ const PaySlip = ({
 };
 
 const mapStateToProps = state => ({
+  loadingStatus: state.Salary.loadingStatus,
   error: state.Salary.error,
   firstName: state.Salary.firstName,
   lastName: state.Salary.lastName,
