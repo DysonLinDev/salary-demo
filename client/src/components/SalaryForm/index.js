@@ -6,7 +6,7 @@ import { calculate } from "../../reducers/salaryReducer";
 import "./style.css";
 
 const nameRegex = /^[a-zA-Z]+$/;
-const superRateRegex = /^\d(\.)?(\d+)?$/;
+const superRateRegex = /^\d{1,2}(\.)?(\d+)?$/;
 
 const SalaryForm = ({ calculate, error }) => {
   const [firstName, onChangeFirstName] = useState("");
@@ -19,13 +19,13 @@ const SalaryForm = ({ calculate, error }) => {
 
   const handleFirstNameChange = e => {
     const newValue = e.target.value;
-    if (!isNameValid(newValue)) return;
+    if (!isNameValid(newValue) && newValue) return;
 
     onChangeFirstName(newValue);
   };
   const handleLastNameChange = e => {
     const newValue = e.target.value;
-    if (!isNameValid(newValue)) return;
+    if (!isNameValid(newValue) && newValue) return;
 
     onChangeLastName(e.target.value);
   };
@@ -34,7 +34,8 @@ const SalaryForm = ({ calculate, error }) => {
     const newValue = e.target.value;
     const isFormatValid = superRateRegex.test(newValue);
 
-    if (!isFormatValid) return;
+    if (!isFormatValid && newValue) return;
+
     onChangesuperRate(e.target.value);
   };
 
