@@ -4,7 +4,7 @@
     "test": "lab"
   },
   "dependencies": {
-    "@hapi/hapi": "^18.4.0",
+    "@hapi/hapi": "^19.1.1",
     "hapi-cors": "^1.0.3",
     "hapi-mysql2": "^2.4.2",
     "hapi-router": "5"
